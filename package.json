@@ -4,7 +4,7 @@
   "private": true,
   "engines":{
     "node":"12.16.1",
-    "npm":"6.4.2"
+    "npm":"6.4.1"
 
   },
   "homepage": "https://creativetimofficial.github.io/black-dashboard-react/#/dashboard",
