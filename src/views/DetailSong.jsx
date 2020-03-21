@@ -163,7 +163,7 @@ backDetail=(value)=>{
             <Col md="8">
 
             <Embed
-                id='O6Xo21L0ybE'
+                id={descriptionSongInfo.urlYouTube ? descriptionSongInfo.urlYouTube:'O6Xo21L0ybE'}
                 placeholder='/images/image-16by9.png'
                 source='youtube'
             />           
