@@ -21,19 +21,20 @@ import { createBrowserHistory } from "history";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
 
 import AdminLayout from "layouts/Admin/Admin.jsx";
-import RTLLayout from "layouts/RTL/RTL.jsx";
 
 import "assets/scss/black-dashboard-react.scss";
 import "assets/demo/demo.css";
 import "assets/css/nucleo-icons.css";
-
+import UserProfile from './views/UserProfile'
+import DetailSong from "./views/DetailSong";
 const hist = createBrowserHistory();
 
 ReactDOM.render(
   <Router history={hist}>
     <Switch>
       <Route path="/admin" render={props => <AdminLayout {...props} />} />
-      <Route path="/rtl" render={props => <RTLLayout {...props} />} />
+      <Route path="/admin/metalica/:paramsIDName" render={props => <UserProfile {...props} />} />
+      <Route path="/admin/detailSong/:paramsNameArtiste/:paramsNameAlbum/:paramsNameSong" render={props => <DetailSong {...props} />} />
       <Redirect from="/" to="/admin/dashboard" />
     </Switch>
   </Router>,

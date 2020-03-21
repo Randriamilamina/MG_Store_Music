@@ -1,0 +1,71 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add semantic-ui-react
+
+PATH: 
+  C:\Python27\;C:\Python27\Scripts;D:\app\rcj\product\12.2.0\dbhome_1\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;D:\Gurobi\win64\bin;C:\oraclexe\app\oracle\product\11.2.0\server\bin;C:\oracle\product\10.2.0\db_1\bin;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\UwAmp\bin\database\mysql-5.6.20\bin;C:\Users\CEDRICK\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Java\jre1.8.0_73\bin;C:\Program Files\Java\jdk1.8.0_73\bin;D:\appacheTomcat\webapps\examples\WEB-INF\lib;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files\Git\cmd;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Program Files\VisualSVN Server\bin;C:\Users\CEDRICK\AppData\Roaming\npm;C:\Program Files\nodejs;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\dotnet;C:\Program Files (x86)\Microsoft SQL Server\150\DTS\Binn\;D:\Etude itu\M2\Naina\grails-4.0.0\bin;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\Android\Android Studio\plugins\android\lib;C:\Users\CEDRICK\AppData\Local\Android\sdk\tools;C:\Users\CEDRICK\AppData\Local\Android\sdk\tools\bin;C:\Users\CEDRICK\AppData\Local\Android\sdk\platform-tools;D:\Etude itu\M2\Naina\apache-groovy-sdk-2.5.8\groovy-2.5.8\bin;D:\apache-tomcat-7.0.37\bin;C:\Program Files\Java\jdk1.8.0_73\jre\lib\ext;;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;D:\PUTTY\;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs\;C:\Program Files\Java\jdk-11.0.6\bin;C:\Program Files (x86)\Microsoft VS Code\bin;D:\Gurobi\win64\bin;C:\oraclexe\app\oracle\product\11.2.0\server\bin;C:\oracle\product\10.2.0\db_1\bin;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\UwAmp\bin\database\mysql-5.6.20\bin;C:\Program Files\Apache Software Foundation\Tomcat 7.0\bin;C:\Users\CEDRICK\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Java\jre1.8.0_73\bin;C:\Program Files\Java\jdk1.8.0_73\bin;D:\appacheTomcat\webapps\examples\WEB-INF\lib;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files\Git\cmd;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Program Files\VisualSVN Server\bin;C:\Program Files (x;C:\Users\CEDRICK\.dotnet\tools;C:\Users\CEDRICK\AppData\Local\Yarn\bin;D:\JetBrains\IntelliJ IDEA 2019.1\bin;;C:\Users\CEDRICK\AppData\Local\Microsoft\WindowsApps;C:\Users\CEDRICK\AppData\Roaming\npm
+
+Yarn version: 
+  1.19.1
+
+Node version: 
+  12.16.1
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: EPERM: operation not permitted, unlink 'D:\Etude itu\M2\MICHEL_BUFFA\black-dashboard-react-master\node_modules\node-sass\vendor\win32-x64-72\binding.node'
+
+npm manifest: 
+  {
+    "name": "music-store",
+    "version": "1.0.0",
+    "private": true,
+    "engines":{
+      "node":"12.16.1",
+      "npm":"6.4.1"
+  
+    },
+    "homepage": "https://creativetimofficial.github.io/black-dashboard-react/#/dashboard",
+    "dependencies": {
+      "@types/react": "16.4.16",
+      "bootstrap": "^4.4.1",
+      "chart.js": "^2.7.2",
+      "classnames": "2.2.6",
+      "history": "4.7.2",
+      "node-sass": "^4.13.1",
+      "perfect-scrollbar": "1.4.0",
+      "prop-types": "^15.6.2",
+      "react": "16.5.2",
+      "react-chartjs-2": "^2.7.4",
+      "react-dom": "16.5.2",
+      "react-google-maps": "9.4.5",
+      "react-notification-alert": "0.0.8",
+      "react-router-dom": "4.3.1",
+      "react-scripts": "2.0.4",
+      "reactstrap": "6.5.0"
+    },
+    "scripts": {
+      "start": "react-scripts start",
+      "build": "react-scripts build",
+      "test": "react-scripts test --env=jsdom",
+      "eject": "react-scripts eject",
+      "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
+      "compile-scss": "node-sass src/assets/scss/black-dashboard-react.scss src/assets/css/black-dashboard-react.css"
+    },
+    "eslintConfig": {
+      "extends": "react-app"
+    },
+    "browserslist": [
+      ">0.2%",
+      "not dead",
+      "not ie <= 11",
+      "not op_mini all"
+    ]
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

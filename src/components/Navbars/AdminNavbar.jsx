@@ -1,20 +1,3 @@
-/*!
-
-=========================================================
-* Black Dashboard React v1.0.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/black-dashboard-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/black-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
@@ -36,22 +19,54 @@ import {
   Container,
   Modal
 } from "reactstrap";
+import _ from 'lodash'
+import { Search, Grid, Header, Segment } from 'semantic-ui-react'
+import { AlbumAPI } from "../../api";
+import PropTypes from "prop-types"; 
 
+let  nouveauGroupe={}
+nouveauGroupe.membres = [];
+let arrayFinal=[];
 class AdminNavbar extends React.Component {
-  constructor(props) {
-    super(props);
+  static contextTypes = {
+    router: PropTypes.object
+  }
+  
+  constructor(props,context) {
+  super(props, context);
     this.state = {
       collapseOpen: false,
-      modalSearch: false,
+      modalSearch: false, value: '' ,
+      sources:[],titre:[], isLoading: false,
+      isError: false,
+      results: [],_isMounted:false,  source : _.times(5, () => ({
+        title: '',
+        description: '',
+        image: '',
+        price: '',
+      })),
       color: "navbar-transparent"
     };
   }
   componentDidMount() {
     window.addEventListener("resize", this.updateColor);
+ 
+
   }
   componentWillUnmount() {
     window.removeEventListener("resize", this.updateColor);
   }
+
+  getResultTitre =  async(value) =>{
+    let arrayFinal=[];
+    if(value !== null){
+      value.map((m,index)=> {
+        arrayFinal.push(m.title);
+      })
+      return  arrayFinal;
+    }
+  }
+
   // function that adds color white/transparent to the navbar on resize (this is for the collapse)
   updateColor = () => {
     if (window.innerWidth < 993 && this.state.collapseOpen) {
@@ -85,7 +100,111 @@ class AdminNavbar extends React.Component {
       modalSearch: !this.state.modalSearch
     });
   };
+  
+handleResultSelect = (e, { result }) => {
+  
+  this.setState({ value: result.title})
+  console.log("name selectionner  "+result.title);
+  if(result.title != null){
+   // this.props.history.push(`/admin/metalica/${result.title}`);
+    this.props.history.push({
+      pathname: '/admin/metalica/',
+      search: '?query=abc',
+      state: { paramsIDName: result.title }
+    })
+  }
+}
+
+
+
+handleSearchChange =  (e, { value }) => {
+  this.setState({ isLoading: true, value })
+
+  this.setState({ _isMounted: false})
+  console.log("valeur recherche "+value)
+  let obj = {newName: ''};
+ 
+  setTimeout(() => {
+    if (this.state.value.length < 1) return this.setState(this.state)
+
+    const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
+    const isMatch = (result) => re.test(result.title)
+
+    const getDataPromise = () => new Promise((resolve, reject) => {  
+      setTimeout(function() {
+        resolve(AlbumAPI.getAllSearchFullText(value));
+      }, 200);
+      });  
+    const processDataAsycn = async () => {  
+      let data = await getDataPromise();  
+      data = await getDataPromise(data);  
+      return data;  
+    };  
+    processDataAsycn().then((data) => {  
+     // console.log('Data from processDataAsycn() with async( When promise gets resolved ): ' + JSON.stringify(data));  
+      if(nouveauGroupe.membres.length>0){
+        nouveauGroupe.membres.splice(0,nouveauGroupe.membres.length);
+      }
+      //console.log('taille  from processDataAsycn() nouveauGroupe.membres.length ' +nouveauGroupe.membres.length);  
+
+      data.map((m,index)=> {
+        let membre = {};     
+        //console.log('objet result name  returned: ' +m.name);
+ 
+        membre.title = m.name
+        membre.image=m.picture;
+        membre.price='';
+        membre.description='';
+      //membre.picture = m.picture
+      nouveauGroupe.membres.push(membre);
+         if(data.length===nouveauGroupe.membres.length-1){
+        console.log('  fin promise returned:----------- ');
+
+      }
+      
+       });
+      this.setState({source:nouveauGroupe.membres});
+     /* console.log('taillupdatedNums v  returned: ' +this.state.source.length);
+      console.log('type : ' + Object.values(JSON.stringify(this.state.source)));
+
+      console.log('returned: ' + JSON.stringify(_.filter(this.state.source, isMatch)));
+      console.log('JSON ---------- : ' + JSON.stringify(this.state.source)); 
+ */
+      this.state._isMounted=true;
+      console.log('created promise '+this.state._isMounted);
+      this.state._isMounted && this.setState(prevState => {
+        const newHobbiesList = _.filter(prevState.source, isMatch);
+        //console.log('objet newHobbiesList '+this.newHobbiesList);
+  
+        return { isLoading: false,results: newHobbiesList };
+      });
+
+    
+    }).finally((function() {
+   })).catch((error) => {  
+      console.log('Error from processDataAsycn() with async( When promise gets rejected ): ' + error);  
+    });
+   
+   
+
+   
+   
+  }, 300)
+
+  
+
+}
+
   render() {
+
+    const { source,_isMounted} = this.state
+    if(_isMounted){
+     
+    }
+
+    const { isLoading, value, results} = this.state
+
+    //const [ isLoading, value, results ] = initialState)
     return (
       <>
         <Navbar
@@ -196,7 +315,7 @@ class AdminNavbar extends React.Component {
                   </DropdownToggle>
                   <DropdownMenu className="dropdown-navbar" right tag="ul">
                     <NavLink tag="li">
-                      <DropdownItem className="nav-item">Profile</DropdownItem>
+                      <DropdownItem className="nav-item">{results.title}</DropdownItem>
                     </NavLink>
                     <NavLink tag="li">
                       <DropdownItem className="nav-item">Settings</DropdownItem>
@@ -218,7 +337,18 @@ class AdminNavbar extends React.Component {
           toggle={this.toggleModalSearch}
         >
           <div className="modal-header">
-            <Input id="inlineFormInputGroup" placeholder="SEARCH" type="text" />
+            
+          <Search
+            fluid
+            loading={isLoading}
+            onResultSelect={this.handleResultSelect}
+            onSearchChange={_.debounce(this.handleSearchChange, 500, {
+              leading: true,
+            })}
+            results={results}
+            value={value}
+            {...this.props}
+          />
             <button
               aria-label="Close"
               className="close"

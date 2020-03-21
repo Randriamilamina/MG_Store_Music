@@ -2,10 +2,9 @@
   "name": "music-store",
   "version": "1.0.0",
   "private": true,
-  "engines":{
-    "node":"12.16.1",
-    "npm":"6.4.1"
-
+  "engines": {
+    "node": "12.16.1",
+    "npm": "6.4.1"
   },
   "homepage": "https://creativetimofficial.github.io/black-dashboard-react/#/dashboard",
   "dependencies": {
@@ -24,7 +23,8 @@
     "react-notification-alert": "0.0.8",
     "react-router-dom": "4.3.1",
     "react-scripts": "2.0.4",
-    "reactstrap": "6.5.0"
+    "reactstrap": "6.5.0",
+    "semantic-ui-react": "^0.88.2"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,23 +1,4 @@
-/*!
-
-=========================================================
-* Black Dashboard React v1.0.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/black-dashboard-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/black-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
-import classnames from "classnames";
-
 // reactstrap components
 import {
   Button,
@@ -38,6 +19,10 @@ import {
   TabPane
 } from "reactstrap";
 
+import LoaderApp from '../views/LoaderApp';
+import CardAlbum from "../views/CardAlbum";
+import DetailAlbum from '../views/DetailAlbum'
+
 class ListeAlbums extends React.Component {
   constructor(props) {
     super(props);
@@ -53,136 +38,36 @@ class ListeAlbums extends React.Component {
       [stateName]: index
     });
   };
+  
   render() {
+    const {loading, nameArtiste,imageArtiste, listeAlbumsDescription} = this.props;
+
+    const extra = (
+      <a>
+        <DetailAlbum/>
+      </a>
+    )
     return (
       <>
-        <div className="content">
-          <Row>
-            <Col md="12">
-            <Col lg="12" md="12">
-                  <Card className="card-tasks">
+         <Row>
+
+         <Card className="card-tasks">
+                <CardHeader>
+                  <h5 className="title">Liste Albums</h5>
+                </CardHeader>
                 <CardBody>
-                  <div className="table-full-width table-responsive">
-                    <Table>
-                      <tbody>
-              <NavItem>
-              <NavLink
-                className={classnames({
-                  active: this.state.vertical === 1
-                })}
-                onClick={e => this.toggleTabs(e, "vertical", 1)}
-                href="#pablo"
-              >
-               
-               <tr>
-                          <td>
-                            <FormGroup check>
-                              <Label check>
-                              Name
-                              </Label>
-                            </FormGroup>
-                          </td>
-                          <td>
-                            <FormGroup check>
-                              <Label check>
-                                arzearezrzerzer
-                              </Label>
-                            </FormGroup>
-                          </td>
-                  </tr>
-                  <tr>
-                          <td>
-                            <FormGroup check>
-                              <Label check>
-                              Name
-                              </Label>
-                            </FormGroup>
-                          </td>
-                          <td>
-                            <FormGroup check>
-                              <Label check>
-                                arzearezrzerzer
-                              </Label>
-                            </FormGroup>
-                          </td>
-                  </tr>
-                  <tr>
-                          <td>
-                            <FormGroup check>
-                              <Label check>
-                              Name
-                              </Label>
-                            </FormGroup>
-                          </td>
-                          <td>
-                            <FormGroup check>
-                              <Label check>
-                                arzearezrzerzer
-                              </Label>
-                            </FormGroup>
-                          </td>
-                  </tr>
-                  <tr>
-                          <td>
-                            <FormGroup check>
-                              <Label check>
-                              Name
-                              </Label>
-                            </FormGroup>
-                          </td>
-                          <td>
-                            <FormGroup check>
-                              <Label check>
-                                arzearezrzerzer
-                              </Label>
-                            </FormGroup>
-                          </td>
-                  </tr>
-                  <tr>
-                          <td>
-                            <FormGroup check>
-                              <Label check>
-                              Name
-                              </Label>
-                            </FormGroup>
-                          </td>
-                          <td>
-                            <FormGroup check>
-                              <Label check>
-                                arzearezrzerzer
-                              </Label>
-                            </FormGroup>
-                          </td>
-                  </tr>
-                  <tr>
-                          <td>
-                            <FormGroup check>
-                              <Label check>
-                              Name
-                              </Label>
-                            </FormGroup>
-                          </td>
-                          <td>
-                            <FormGroup check>
-                              <Label check>
-                                arzearezrzerzer
-                              </Label>
-                            </FormGroup>
-                          </td>
-                  </tr>
-              </NavLink>
-            </NavItem>
-          
-                    
-                      </tbody>
-                    </Table>
-                  </div>
+                <div className="chart-area">
+                  {!loading && listeAlbumsDescription ?  
+                  <CardAlbum  nameArtiseGlobale={nameArtiste} iamgeartiste={imageArtiste} listeAlbum={listeAlbumsDescription}></CardAlbum>
+                 :
+                 <LoaderApp></LoaderApp>
+                   }
+                   </div>
                 </CardBody>
               </Card>
-              </Col>
-            </Col>
-          </Row>
-        </div>
+
+         </Row>
+           
       </>
     );
   }
