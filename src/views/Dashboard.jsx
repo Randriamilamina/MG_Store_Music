@@ -59,13 +59,9 @@ class Dashboard extends React.Component {
           <Row>
             <Col xs="12">
              
-              <Card className="card-chart">
+              <Card className="all-icons">
                 <CardHeader>
                   <Row>
-                    <Col className="text-left" sm="6">
-                      <h5 className="card-category">Total Shipments</h5>
-                      <CardTitle tag="h2">Menu</CardTitle>
-                    </Col>
                     <Col sm="12">
                     <Nav
           className="nav-pills-primary nav-pills-icons"

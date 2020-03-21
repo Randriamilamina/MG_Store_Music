@@ -34,7 +34,7 @@ class VerticalTab extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      vertical: 1,loading:true,descriptionInfo:[],
+      vertical: 1,loading:true,descriptionInfo:[],loadingClikAlphabet:false,
       tabNomAlphabet:[
     'A',
     'B',
@@ -57,11 +57,11 @@ class VerticalTab extends React.Component {
       'S',
       'T',
       'U',
-      'V']
+      'V','W','X','Y','Z']
     };
   }
   toggleTabs = (e, stateName, index,valeur) => {
-    this.setState({loading:true})
+    this.setState({loadingClikAlphabet:true})
     e.preventDefault();
     this.setState({
       [stateName]: index
@@ -86,7 +86,7 @@ class VerticalTab extends React.Component {
       description.limit = data.limit
       description.listeArtiste = data.artists
           this.setState({descriptionInfo: description,loading:false})
-
+         
           console.log('Data from processDataAsycn() with async( When promise gets resolved ) DETAIL ALPHABET: ' + JSON.stringify(this.state.descriptionInfo.listeAlbums));
 
       }).finally((function() {
@@ -95,6 +95,12 @@ class VerticalTab extends React.Component {
       });
 
     }, 300)
+
+    setTimeout(() => {
+      this.setState({
+          loadingClikAlphabet:false
+      });
+  }, 2500);
   };
   componentDidMount() {
     setTimeout(() => {
@@ -108,7 +114,7 @@ class VerticalTab extends React.Component {
 
   }
   render() {
-    let {tabNomAlphabet,descriptionInfo,loading}=this.state;
+    let {tabNomAlphabet,descriptionInfo,loading,loadingClikAlphabet}=this.state;
         return (
           <>
           
@@ -117,7 +123,7 @@ class VerticalTab extends React.Component {
                 <Nav className="nav-pills-primary flex-column" pills>
               
                 <Col lg="12" md="12">
-                  <Card className="card-tasks">
+                  <Card className="all-icons">
                 <CardHeader>
                   <h6 className="title d-inline">Liste Premier Letres</h6>
                 </CardHeader>
@@ -161,15 +167,22 @@ class VerticalTab extends React.Component {
                 <TabContent activeTab={"vertical" + this.state.vertical}>
                   <TabPane tabId={"vertical" + this.state.vertical}>
                   <Grid relaxed columns={4}>
-                  {!loading && descriptionInfo &&  descriptionInfo.listeArtiste && descriptionInfo.listeArtiste.map((objetArtiste, index) => (
+
+                  {loadingClikAlphabet ? <LoaderApp ></LoaderApp>: 
+                  
+                  !loading && descriptionInfo &&  descriptionInfo.listeArtiste && descriptionInfo.listeArtiste.map((objetArtiste, index) => (
+                    objetArtiste.name ?
                   <Grid.Column>
                    <Button primary><h5>{objetArtiste.name}</h5></Button>
                   </Grid.Column>
-                     ))}  ? 
-                    :
-                    <LoaderApp></LoaderApp>
-                  }
-                   
+                  :
+                  <LoaderApp ></LoaderApp>
+                     ))
+                     }}
+
+                  
+               
+
                   </Grid>
                   </TabPane>
                 </TabContent>
