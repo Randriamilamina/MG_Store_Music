@@ -115,7 +115,78 @@ componentDidMount() {
     }, 5000);
     
 }
+componentWillReceiveProps(nextProps, nextContext) {
+  if (this.props !== nextProps) {
+     
+     const { paramsIDName } = nextProps.location.state
+     console.log("loading......"+ paramsIDName)
+     console.log("key  ----- "+paramsIDName )
+    console.log("key  ----- "+JSON.stringify(this.props) )
+    this.setState({paramsKey:paramsIDName})
+    if(paramsIDName!==null){
+      setTimeout(() => {
+        const getDataDetailPromise = () => new Promise((resolve, reject) => {  
+          setTimeout(function() {
+            resolve(AlbumAPI.getSongByNameFullText(paramsIDName));
+          }, 200);
+          });  
+        const processDataAsycn = async () => {  
+          let data = await getDataDetailPromise();  
+          data = await getDataDetailPromise(data);  
+          return data;  
+        };  
+        
+        let description = {}; 
+        description.listeassociatedMusicalArtist=[]   
+        description.listeGenre=[]
+        description.listeAlbum=[]   
+        description.listeMember=[] 
+        description.listeLabels=[]
+        description.listePictures=[]
+        processDataAsycn().then((data) => {            
+        //console.log('objet result name  returned: ' +m.name);        
+        description.id = data._id
+        description.name = data.name
 
+        description.urlWikipedia = data.urlWikipedia
+        description.urlFacebook = data.urlFacebook
+        description.urlTwitter = data.urlTwitter
+        description.urlAmazon = data.urlAmazon
+        description.urlITunes = data.urlITunes
+        description.urlAllmusic = data.urlAllmusic
+        description.urlDiscogs = data.urlDiscogs
+        description.urlYouTube = data.urlYouTube
+        description.urlInstagram = data.urlInstagram
+        description.urlWikidata = data.urlWikidata
+        description.dateNaissance = data.lifeSpan.begin
+        description.deezerFans = data.deezerFans
+        description.abstract = data.abstract
+        description.picture= data.picture.standard
+        description.listeassociatedMusicalArtist=data.associatedMusicalArtist
+          description.listeAlbums=data.albums
+          description.listeGenre=data.genres
+          description.listeGenreDBP=data.dbp_genre
+          description.listeLabels=data.labels
+          description.listeLabelsrecordLabel=data.recordLabel
+          description.listeMember=data.members
+        
+            this.setState({descriptionInfo: description,loading:false})
+
+            console.log('Data from processDataAsycn() with async( When promise gets resolved ) USERPROFIL: ' + JSON.stringify(this.state.descriptionInfo.listeAlbums));
+
+        }).finally((function() {
+       })).catch((error) => {  
+          console.log('Error from processDataAsycn() with async( When promise gets rejected ): ' + error);  
+        });
+
+      }, 300)
+    }
+    }else{
+      this.props.history.push({
+        pathname: '/admin/dashboard/'
+      })
+  }
+}
   toggleTabs = (e, stateName, index) => {
     e.preventDefault();
     this.setState({
