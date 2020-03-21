@@ -116,6 +116,8 @@ componentDidMount() {
     
 }
 componentWillReceiveProps(nextProps, nextContext) {
+  this.setState({loading:true})
+  this.setState({descriptionInfo:[]})
   if (this.props !== nextProps) {
      
      const { paramsIDName } = nextProps.location.state
