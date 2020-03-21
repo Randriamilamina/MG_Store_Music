@@ -47,30 +47,29 @@ black-dashboard-react
     │       │   │   ├── utilities
     │       │   │   └── vendor
     │       └── black-dashboard.scss
+    ├── api
+    │   ├── API_HOST.js
+    │   ├── index.js
+        ├── Request.js.js
     ├── components
-    │   ├── FixedPlugin
-    │   │   └── FixedPlugin.jsx
     │   ├── Footer
     │   │   └── Footer.jsx
     │   ├── Navbars
     │   │   ├── AdminNavbar.jsx
-    │   │   └── RTLNavbar.jsx
     │   └── Sidebar
     │       └── Sidebar.jsx
     ├── layouts
     │   ├── Admin
     │   │   └── Admin.jsx
-    │   └── RTL
-    │       └── RTL.jsx
-    ├── variables
-    │   └── charts.jsx
     └── views
+        ├── CardAlbum.jsx
         ├── Dashboard.jsx
-        ├── Icons.jsx
-        ├── Map.jsx
-        ├── Notifications.jsx
-        ├── Rtl.jsx
+        ├── DetailAlbum.jsx
+        ├── DetailSong.jsx
+        ├── ListeAlbum.jsx
+        ├── LoaderApp.jsx
         ├── TableList.jsx
-        ├── Typography.jsx
         └── UserProfile.jsx
+        └── VerticalTab.jsx
+
 ```
