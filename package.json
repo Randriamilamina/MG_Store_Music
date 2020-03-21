@@ -6,7 +6,7 @@
     "node": "12.16.1",
     "npm": "6.4.1"
   },
-  "homepage": "https://creativetimofficial.github.io/black-dashboard-react/#/dashboard",
+  "homepage": "http://localhost:3000/admin/dashboard",
   "dependencies": {
     "@types/react": "16.4.16",
     "bootstrap": "^4.4.1",
