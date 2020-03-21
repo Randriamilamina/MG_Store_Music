@@ -12,12 +12,6 @@ class DetailAlbum extends React.Component {
   }
 
   componentDidMount() {
-   /* const {listeSongAlbum} = this.props;
-
-    if(listeSongAlbum.length>0){
-      listeSongAlbum.splice(0,listeSongAlbum.length);
-    }*/
-
   }
   render() {
     const {nameAlbum,imageAlbum,listeSongAlbum,nameArtiste,imageArtiste} = this.props;

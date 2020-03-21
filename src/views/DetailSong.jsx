@@ -40,8 +40,6 @@ class DetailSong extends React.Component {
 
       const { searchTextArtistName,searchTextAlbumName,searchTextSongName ,imagealbum,imageartiste} = this.props.location.state
 
-      console.log("params ---  "+searchTextArtistName +'  '+searchTextAlbumName+'  '+searchTextSongName)
-  
   
       this.setState({paramsKeysearchTextArtistName:searchTextArtistName})
       this.setState({paramsKeysearchTextAlbumName:searchTextAlbumName})
@@ -110,7 +108,6 @@ class DetailSong extends React.Component {
               
                   this.setState({descriptionSongInfo: descriptionSong,loading:false})
       
-                  console.log('Data from processDataAsycn() with async( When promise gets resolved ) DETAIL SONG: ' + descriptionSong.rank);
       
               }).finally((function() {
              })).catch((error) => {  

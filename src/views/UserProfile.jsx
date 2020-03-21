@@ -38,8 +38,6 @@ class UserProfile extends React.Component {
   componentWillMount() {
     if(this.props != undefined  && this.props !== null && this.props.location.state !=null){
       const { paramsIDName } = this.props.location.state
-    console.log("key  ----- "+paramsIDName )
-    console.log("key  ----- "+JSON.stringify(this.props) )
     this.setState({paramsKey:paramsIDName})
     if(paramsIDName!==null){
       setTimeout(() => {
@@ -89,8 +87,6 @@ class UserProfile extends React.Component {
           description.listeMember=data.members
         
             this.setState({descriptionInfo: description,loading:false})
-
-            console.log('Data from processDataAsycn() with async( When promise gets resolved ) USERPROFIL: ' + JSON.stringify(this.state.descriptionInfo.listeAlbums));
 
         }).finally((function() {
        })).catch((error) => {  
@@ -121,9 +117,6 @@ componentWillReceiveProps(nextProps, nextContext) {
   if (this.props !== nextProps) {
      
      const { paramsIDName } = nextProps.location.state
-     console.log("loading......"+ paramsIDName)
-     console.log("key  ----- "+paramsIDName )
-    console.log("key  ----- "+JSON.stringify(this.props) )
     this.setState({paramsKey:paramsIDName})
     if(paramsIDName!==null){
       setTimeout(() => {
@@ -174,7 +167,6 @@ componentWillReceiveProps(nextProps, nextContext) {
         
             this.setState({descriptionInfo: description,loading:false})
 
-            console.log('Data from processDataAsycn() with async( When promise gets resolved ) USERPROFIL: ' + JSON.stringify(this.state.descriptionInfo.listeAlbums));
 
         }).finally((function() {
        })).catch((error) => {  

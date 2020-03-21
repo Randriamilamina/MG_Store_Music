@@ -106,7 +106,6 @@ handleResultSelect = (e, { result }) => {
   this.setState({ value: result.title})
   console.log("name selectionner  "+result.title);
   if(result.title != null){
-   // this.props.history.push(`/admin/metalica/${result.title}`);
     this.props.history.push({
       pathname: '/admin/metalica/',
       search: '?query=abc',
@@ -121,7 +120,6 @@ handleSearchChange =  (e, { value }) => {
   this.setState({ isLoading: true, value })
 
   this.setState({ _isMounted: false})
-  console.log("valeur recherche "+value)
   let obj = {newName: ''};
  
   setTimeout(() => {
@@ -140,42 +138,26 @@ handleSearchChange =  (e, { value }) => {
       data = await getDataPromise(data);  
       return data;  
     };  
-    processDataAsycn().then((data) => {  
-     // console.log('Data from processDataAsycn() with async( When promise gets resolved ): ' + JSON.stringify(data));  
+    processDataAsycn().then((data) => {   
       if(nouveauGroupe.membres.length>0){
         nouveauGroupe.membres.splice(0,nouveauGroupe.membres.length);
       }
-      //console.log('taille  from processDataAsycn() nouveauGroupe.membres.length ' +nouveauGroupe.membres.length);  
 
       data.map((m,index)=> {
         let membre = {};     
-        //console.log('objet result name  returned: ' +m.name);
  
         membre.title = m.name
         membre.image=m.picture;
         membre.price='';
         membre.description='';
-      //membre.picture = m.picture
       nouveauGroupe.membres.push(membre);
-         if(data.length===nouveauGroupe.membres.length-1){
-        console.log('  fin promise returned:----------- ');
-
-      }
       
        });
       this.setState({source:nouveauGroupe.membres});
-     /* console.log('taillupdatedNums v  returned: ' +this.state.source.length);
-      console.log('type : ' + Object.values(JSON.stringify(this.state.source)));
-
-      console.log('returned: ' + JSON.stringify(_.filter(this.state.source, isMatch)));
-      console.log('JSON ---------- : ' + JSON.stringify(this.state.source)); 
- */
       this.state._isMounted=true;
       console.log('created promise '+this.state._isMounted);
       this.state._isMounted && this.setState(prevState => {
         const newHobbiesList = _.filter(prevState.source, isMatch);
-        //console.log('objet newHobbiesList '+this.newHobbiesList);
-  
         return { isLoading: false,results: newHobbiesList };
       });
 

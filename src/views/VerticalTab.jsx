@@ -86,8 +86,6 @@ class VerticalTab extends React.Component {
       description.limit = data.limit
       description.listeArtiste = data.artists
           this.setState({descriptionInfo: description,loading:false})
-         
-          console.log('Data from processDataAsycn() with async( When promise gets resolved ) DETAIL ALPHABET: ' + JSON.stringify(this.state.descriptionInfo.listeAlbums));
 
       }).finally((function() {
      })).catch((error) => {  
@@ -178,11 +176,7 @@ class VerticalTab extends React.Component {
                   :
                   <LoaderApp ></LoaderApp>
                      ))
-                     }}
-
-                  
-               
-
+                     }
                   </Grid>
                   </TabPane>
                 </TabContent>
